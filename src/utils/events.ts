@@ -15,7 +15,7 @@ export const sendDataToGA = async (credit_sum: number, credit_period: number) =>
       {
         redirect: 'follow',
         method: 'POST',
-        body: JSON.stringify({ date, credit_sum, credit_period, exp: '3148', variant: '3148_1' }),
+        body: JSON.stringify({ date, credit_sum, credit_period, exp: '3148', variant: '3148_3' }),
         headers: {
           'Content-Type': 'text/plain;charset=utf-8',
         },

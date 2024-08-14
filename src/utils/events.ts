@@ -3,7 +3,7 @@ declare global {
     dataLayer: unknown[];
   }
 }
-export const sendDataToGA = async (choice: string) => {
+export const sendDataToGA = async (credit_sum: number, credit_period: number) => {
   try {
     const now = new Date();
     const date = `${now.getFullYear()}-${
@@ -11,11 +11,11 @@ export const sendDataToGA = async (choice: string) => {
     }-${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
 
     await fetch(
-      'https://script.google.com/macros/s/AKfycby5qMQb_xglJuAA9IlAOzgInjXlrr3NUNzu4kf0Niju7Ia6ejxejxe5M6xc7xL87C0hbg/exec',
+      'https://script.google.com/macros/s/AKfycbz28vT6eusrPSZqIA3VsI8Q98PSigK_I58jfxyZmqgjMGSXSSODn3q1CPPhhmtKzZQ/exec',
       {
         redirect: 'follow',
         method: 'POST',
-        body: JSON.stringify({ date, choice, variant: '3009_1' }),
+        body: JSON.stringify({ date, credit_sum, credit_period, exp: '3148', variant: '3148_1' }),
         headers: {
           'Content-Type': 'text/plain;charset=utf-8',
         },

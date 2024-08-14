@@ -7,6 +7,7 @@ import { useCallback, useState } from 'react';
 import { LS, LSKeys } from './ls';
 import { appSt } from './style.css';
 import { ThxLayout } from './thx/ThxLayout';
+import { sendDataToGA } from './utils/events';
 
 const min = 10_000;
 const max = 200_000;
@@ -80,14 +81,12 @@ export const App = () => {
 
   const submit = useCallback(() => {
     setLoading(true);
-    setThx(true);
-    setLoading(false);
-    // sendDataToGA(selectedVariant.title).then(() => {
-    //   LS.setItem(LSKeys.ShowThx, true);
-    // setThx(true);
-    // setLoading(false);
-    // });
-  }, []);
+    sendDataToGA(numberValue, periodValue).then(() => {
+      LS.setItem(LSKeys.ShowThx, true);
+      setThx(true);
+      setLoading(false);
+    });
+  }, [numberValue, periodValue]);
 
   if (thxShow) {
     return <ThxLayout />;

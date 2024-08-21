@@ -48,8 +48,6 @@ export const App = () => {
 
   const numberValue = typeof value === 'string' ? Number(value.replace(/\s+/g, '')) : value;
   const monthlyRate = numberValue > 29_999 ? 0.3999 : 0.598;
-  const monthlyPayment = calculatePayment(numberValue, monthlyRate, periodValue);
-  const totalOverpay = monthlyPayment * periodValue - numberValue;
 
   const handleInputChange: SliderInputProps['onInputChange'] = (_, { value }) => {
     setValue(typeof value === 'string' ? Number(value.replace(/\s+/g, '')) : value);
@@ -142,14 +140,6 @@ export const App = () => {
           sliderClassName={appSt.slid}
         />
 
-        <div className={appSt.box}>
-          <Typography.Text view="primary-medium" weight="bold">
-            {totalOverpay.toLocaleString('ru')} ₽
-          </Typography.Text>
-
-          <Typography.Text view="primary-small">Эту сумму вы переплатите за весь период займа</Typography.Text>
-        </div>
-
         <div className={appSt.row}>
           <div className={appSt.img}>
             <CDNIcon name="glyph_clock_m" />
@@ -171,7 +161,7 @@ export const App = () => {
           <div className={appSt.rowText}>
             <Typography.Text view="primary-medium">Досрочное погашение без переплат</Typography.Text>
             <Typography.Text view="primary-small" color="secondary">
-              При досрочном погашении вы не переплачиваете лишние деньги
+              Ваша переплата будет меньше, если погасите досрочно
             </Typography.Text>
           </div>
         </div>
@@ -188,6 +178,7 @@ export const App = () => {
             </Typography.Text>
           </div>
         </div>
+        <Gap size={96} />
       </div>
       <div className={appSt.bottomBtn}>
         <ButtonMobile block view="primary" className={appSt.btn} onClick={submit} loading={loading}>
